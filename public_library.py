@@ -11,6 +11,7 @@ pushing this python file to your Github account, please also setup a
 http://repl.it/languages/Python (so it runs there) and enter the saved URL here.
 """
 
+
 class Library(object):
     """The Library class is made up of shelves."""
     def __init__(self):
@@ -35,6 +36,7 @@ class Shelf(object):
         print '{shelf} shelf contents:'.format(shelf=self.name)
         for book in self.books:
             print book.output()
+
 
 class Book(object):
     """A class defining each book in the library"""
@@ -68,9 +70,11 @@ if __name__ == '__main__':
     isbn_list = [1234567890, 1234567899, 1234567888,
                  1234567777, 1234566666, 1234555555]
     shelf_list = [shelf1, shelf2, shelf1, shelf2, shelf1, shelf2]
+    # test shelf method
     for author, title, isbn, shelf in zip(author_list, title_list, isbn_list, shelf_list):
         Book(author, title, isbn).enshelf(shelf)
     a.report()
+    # test unshelf method
     for shelf in a.shelves:
         for book in shelf.books[:]:
             print book.data[0]

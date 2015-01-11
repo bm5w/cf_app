@@ -49,7 +49,7 @@ class Book(object):
 
     def unshelf(self, shelf):
         """Remove book from shelf."""
-        shelf.books.pop(self)
+        shelf.books.remove(self)
 
     def output(self):
         """Return string representation of book"""
@@ -70,4 +70,9 @@ if __name__ == '__main__':
     shelf_list = [shelf1, shelf2, shelf1, shelf2, shelf1, shelf2]
     for author, title, isbn, shelf in zip(author_list, title_list, isbn_list, shelf_list):
         Book(author, title, isbn).enshelf(shelf)
+    a.report()
+    for shelf in a.shelves:
+        for book in shelf.books[:]:
+            print book.data[0]
+            book.unshelf(shelf)
     a.report()

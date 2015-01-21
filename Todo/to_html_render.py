@@ -195,20 +195,13 @@ page.append(head)
 
 body = hr.Body()
 
-body.append( hr.H(2, u"Todo List") )
-
-body.append(hr.P(u"This is a simple html page to manage Todos.",
-              style=u"text-align: center; font-style: oblique;"))
-
-body.append(hr.Hr())
-
 inputField = hr.P(u"Input item to add to your Todo list:", style=u"text-align: center")
 
 inputField2 = hr.Form(action=u"javascript:  addItem()", style=u"text-align: center")
 
 inputField2.append(hr.Input(id=u"inputForm", type="text"))
 
-inputField2.append(hr.Input(type="submit", onsubmit="addItem()"))
+inputField2.append(hr.Input(type="submit", value="Add", onsubmit="addItem()"))
 
 inputField.append(inputField2)
 
@@ -216,7 +209,7 @@ body.append(inputField)
 
 body.append(hr.Hr())
 
-body.append(hr.P(u"Todo list:", style=u"text-align: center; font-size: x-large; font-weight: bolder"))
+body.append(hr.H(2, u"Todo list:", style=u"text-align: center"))
 
 list = hr.Ul(id=u"TheList", style=u"line-height:200%")
 

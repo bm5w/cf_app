@@ -5,22 +5,15 @@
         <title>Mark's Todo List</title>
     </head>
     <body>
-        <h2>Todo List</h2>
-        <p style="text-align: center; font-style: oblique;">
-            This is a simple html page to manage Todos.
-        </p>
-        <hr />
         <p style="text-align: center">
             Input item to add to your Todo list:
             <form action="javascript:  addItem()" style="text-align: center">
                 <input type="text" id="inputForm">
-                <input onsubmit="addItem()" type="submit">
+                <input onsubmit="addItem()" type="submit" value="Add">
             </form>
         </p>
         <hr />
-        <p style="text-align: center; font-size: x-large; font-weight: bolder">
-            Todo list:
-        </p>
+        <h2 style="text-align: center">Todo list:</h2>
         <ul style="line-height:200%" id="TheList">
         </ul>
         <script src="todo.js"></script>

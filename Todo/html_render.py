@@ -100,6 +100,13 @@ class A(OneLineTag):
         # self.content = "<a href=\"{link}\">{content}</a>".\
         #     format(link=link, content=content)
 
+class Script(OneLineTag):
+    tag = "script"
+    def __init__(self, link, content):
+        OneLineTag.__init__(self, content, src=link)
+        # or
+        # self.content = "<a href=\"{link}\">{content}</a>".\
+        #     format(link=link, content=content)
 
 class Button(OneLineTag):
     tag = 'button'
@@ -122,6 +129,8 @@ class Input(Objects):
 class Ul(Element):
     tag = 'ul'
 
+class Form(Element):
+    tag = 'form'
 
 class Li(Element):
     tag = "li"

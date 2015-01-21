@@ -204,9 +204,14 @@ body.append(hr.Hr())
 
 body.append(hr.P(u"Input item to add to list:"))
 
-body.append(hr.Input(id=u"inputForm"))
+inputField = hr.Form(action=u"javascript:  addItem()")
 
-body.append(hr.Button(u"Submit", type=u"button", onclick="addItem()"))
+inputField.append(hr.Input(id=u"inputForm", type="text"))
+
+inputField.append(hr.Input(id=u"submit button", type="submit", onsubmit="addItem()"))
+
+# body.append(hr.Button(u"Submit", type=u"button", onclick="addItem()"))
+body.append(inputField)
 
 list = hr.Ul(id=u"TheList", style=u"line-height:200%")
 

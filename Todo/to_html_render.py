@@ -208,7 +208,7 @@ inputField = hr.Form(action=u"javascript:  addItem()")
 
 inputField.append(hr.Input(id=u"inputForm", type="text"))
 
-inputField.append(hr.Input(id=u"submit button", type="submit", onsubmit="addItem()"))
+inputField.append(hr.Input(type="submit", onsubmit="addItem()"))
 
 # body.append(hr.Button(u"Submit", type=u"button", onclick="addItem()"))
 body.append(inputField)

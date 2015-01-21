@@ -4,6 +4,9 @@ function addItem()    {
 
     // Get the value of the input field with id = "inputForm"
     x = document.getElementById("inputForm").value;
+    // Clear form after submit
+    document.getElementById("inputForm").value=null;
+
 
     // Check if item is in list, add to list if not, alert if it is
     var elementExists = document.getElementById(x);

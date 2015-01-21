@@ -10,13 +10,17 @@
             This is a simple html page to manage Todos.
         </p>
         <hr />
-        <p>
-            Input item to add to list:
+        <p style="text-align: center">
+            Input item to add to your Todo list:
+            <form action="javascript:  addItem()" style="text-align: center">
+                <input type="text" id="inputForm">
+                <input onsubmit="addItem()" type="submit">
+            </form>
         </p>
-        <form action="javascript:  addItem()">
-            <input type="text" id="inputForm">
-            <input onsubmit="addItem()" type="submit">
-        </form>
+        <hr />
+        <p style="text-align: center; font-size: x-large; font-weight: bolder">
+            Todo list:
+        </p>
         <ul style="line-height:200%" id="TheList">
         </ul>
         <script src="todo.js"></script>

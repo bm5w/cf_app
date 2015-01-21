@@ -202,16 +202,21 @@ body.append(hr.P(u"This is a simple html page to manage Todos.",
 
 body.append(hr.Hr())
 
-body.append(hr.P(u"Input item to add to list:"))
+inputField = hr.P(u"Input item to add to your Todo list:", style=u"text-align: center")
 
-inputField = hr.Form(action=u"javascript:  addItem()")
+inputField2 = hr.Form(action=u"javascript:  addItem()", style=u"text-align: center")
 
-inputField.append(hr.Input(id=u"inputForm", type="text"))
+inputField2.append(hr.Input(id=u"inputForm", type="text"))
 
-inputField.append(hr.Input(type="submit", onsubmit="addItem()"))
+inputField2.append(hr.Input(type="submit", onsubmit="addItem()"))
 
-# body.append(hr.Button(u"Submit", type=u"button", onclick="addItem()"))
+inputField.append(inputField2)
+
 body.append(inputField)
+
+body.append(hr.Hr())
+
+body.append(hr.P(u"Todo list:", style=u"text-align: center; font-size: x-large; font-weight: bolder"))
 
 list = hr.Ul(id=u"TheList", style=u"line-height:200%")
 

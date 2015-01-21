@@ -210,17 +210,9 @@ body.append(hr.Button(u"Submit", type=u"button", onclick="addItem()"))
 
 list = hr.Ul(id=u"TheList", style=u"line-height:200%")
 
-list.append( hr.Li(u"The first item in a list") )
-list.append( hr.Li(u"This is the second item") )
-
-item = hr.Li()
-item.append(u"And this is a ")
-item.append( hr.A(u"http://google.com", "link") )
-item.append(u"to google")
-
-list.append(item)
-
 body.append(list)
+
+body.append(hr.Script(u"todo.js", ""))
 
 page.append(body)
 

@@ -10,7 +10,7 @@ commands at the bottom showing it works) is all that is needed. In addition to
 pushing this python file to your Github account, please also setup a
 http://repl.it/languages/Python (so it runs there) and enter the saved URL here.
 """
-
+import unittest
 
 class Library(object):
     """The Library class is made up of shelves."""
@@ -61,31 +61,47 @@ class Book(object):
         return '{author}, \"{title}\", {ISBN}'.\
             format(author=self.data[0], title=self.data[1], ISBN=self.data[2])
 
+class Tests(unittest.TestCase):
+
+    def test_createLibrary(self):
+        a = Library()   # Create library
+        shelf1 = Shelf(a, 'Fiction')  # Add shelves to library
+        shelf2 = Shelf(a, 'Non-Fiction')
+        self.assertEquals(shelf1.name, 'Fiction')
+        author_list = ['Mark Saiget', 'Joe Smith', 'Michael Creighton',
+                       'Salman Rushdie', 'William Faulkner', 'Joel Schmit']
+        title_list = ['Python', 'The Life of Nexus', 'Jurassic Park',
+                      'Midnight\'s Children', 'As I Lay Dying', 'Adrift']
+        isbn_list = [1234567890, 1234567899, 1234567888,
+                     1234567777, 1234566666, 1234555555]
+        shelf_list = [shelf1, shelf2, shelf1, shelf2, shelf1, shelf2]
+        for author, title, isbn, shelf in zip(author_list, title_list, isbn_list, shelf_list):
+            Book(author, title, isbn).enshelf(shelf)
+        self.assertEquals(shelf1.books[2].output(), """William Faulkner, "As I Lay Dying", 1234566666""")
+        self.assertEquals(shelf2.books[2].output(), """Joel Schmit, "Adrift", 1234555555""")
+        self.assertEquals(len(shelf2.books), 3)
+        self.assertEquals(len(a.shelves), 2)
+
+    def test_unshelf(self):
+        a = Library()   # Create library
+        shelf1 = Shelf(a, 'Fiction')  # Add shelves to library
+        shelf2 = Shelf(a, 'Non-Fiction')
+        self.assertEquals(shelf1.name, 'Fiction')
+        author_list = ['Mark Saiget', 'Joe Smith', 'Michael Creighton',
+                       'Salman Rushdie', 'William Faulkner', 'Joel Schmit']
+        title_list = ['Python', 'The Life of Nexus', 'Jurassic Park',
+                      'Midnight\'s Children', 'As I Lay Dying', 'Adrift']
+        isbn_list = [1234567890, 1234567899, 1234567888,
+                     1234567777, 1234566666, 1234555555]
+        shelf_list = [shelf1, shelf2, shelf1, shelf2, shelf1, shelf2]
+        for author, title, isbn, shelf in zip(author_list, title_list, isbn_list, shelf_list):
+            Book(author, title, isbn).enshelf(shelf)
+        for shelf in a.shelves:
+            for book in shelf.books[:]:
+                book.unshelf(shelf)
+        self.assertEquals(len(shelf1.books), 0)
+        self.assertEquals(len(shelf2.books), 0)
+
 if __name__ == '__main__':
     """Test classes on execution."""
-    a = Library()   # Create library
-    shelf1 = Shelf(a, 'Fiction')  # Add shelves to library
-    shelf2 = Shelf(a, 'Non-Fiction')
-    author_list = ['Mark Saiget', 'Joe Smith', 'Michael Creighton',
-                   'Salman Rushdie', 'William Faulkner', 'Joel Schmit']
-    title_list = ['Python', 'The Life of Nexus', 'Jurassic Park',
-                  'Midnight\'s Children', 'As I Lay Dying', 'Adrift']
-    isbn_list = [1234567890, 1234567899, 1234567888,
-                 1234567777, 1234566666, 1234555555]
-    shelf_list = [shelf1, shelf2, shelf1, shelf2, shelf1, shelf2]
-    # test shelf method
-    for author, title, isbn, shelf in zip(author_list, title_list, isbn_list, shelf_list):
-        Book(author, title, isbn).enshelf(shelf)
-
-    assert shelf1.books[2].output() == """William Faulkner, "As I Lay Dying", 1234566666"""
-    assert shelf2.books[2].output() == """Joel Schmit, "Adrift", 1234555555"""
-    assert len(shelf2.books) == 3
-    assert len(a.shelves) == 2
-
-    # test unshelf method
-    for shelf in a.shelves:
-        for book in shelf.books[:]:
-            book.unshelf(shelf)
-    assert len(shelf1.books) == 0
-    assert len(shelf2.books) == 0
-    print 'All tests pass.'
+    unittest.main()

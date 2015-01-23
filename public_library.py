@@ -33,9 +33,12 @@ class Shelf(object):
 
     def output(self):
         """Print list of all books on shelf."""
-        print '{shelf} shelf contents:'.format(shelf=self.name)
-        for book in self.books:
-            print book.output()
+        if len(self.books) == 0:
+            print '{shelf} shelf contents: Empty'.format(shelf=self.name)
+        else:
+            print '{shelf} shelf contents:'.format(shelf=self.name)
+            for book in self.books:
+                print book.output()
 
 
 class Book(object):
@@ -73,10 +76,16 @@ if __name__ == '__main__':
     # test shelf method
     for author, title, isbn, shelf in zip(author_list, title_list, isbn_list, shelf_list):
         Book(author, title, isbn).enshelf(shelf)
-    a.report()
+
+    assert shelf1.books[2].output() == """William Faulkner, "As I Lay Dying", 1234566666"""
+    assert shelf2.books[2].output() == """Joel Schmit, "Adrift", 1234555555"""
+    assert len(shelf2.books) == 3
+    assert len(a.shelves) == 2
+
     # test unshelf method
     for shelf in a.shelves:
         for book in shelf.books[:]:
-            print book.data[0]
             book.unshelf(shelf)
-    a.report()
+    assert len(shelf1.books) == 0
+    assert len(shelf2.books) == 0
+    print 'All tests pass.'
